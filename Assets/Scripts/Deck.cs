@@ -9,7 +9,7 @@ using Random = UnityEngine.Random;
 public class Deck : MonoBehaviour
 {
     [SerializeField]
-    private Card _model; //temporary
+    private Card _model; //temporar
 
     [SerializeField]
     private Card _cardObject;
