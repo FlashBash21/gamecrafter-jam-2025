@@ -4,15 +4,23 @@ using System.Text;
 using JetBrains.Annotations;
 using Unity.VisualScripting;
 using UnityEngine;
+using UnityEngine.InputSystem;
 using Random = UnityEngine.Random;
 public class Deck : MonoBehaviour
 {
+    [SerializeField]
+    private Card _model; //temporary
+
+    [SerializeField]
+    private Card _cardObject;
     public int MAX_DECK_SIZE { get; } = 52;
 
     private int[] _cards;
+    private int _size; // current number of cards in deck
 
     void Start()
     {
+        _model.enabled = false;
         // DEBUG
         Random.InitState(1);
 
@@ -25,7 +33,7 @@ public class Deck : MonoBehaviour
                 _cards[accum] = val;
             }
         }
-        Debug.Log(ArrayToString<int>(_cards));
+        _size = MAX_DECK_SIZE;
         RandomExtentions.Shuffle<int>(_cards);
         Debug.Log(ArrayToString<int>(_cards));
     }
@@ -45,6 +53,19 @@ public class Deck : MonoBehaviour
 
     void Update()
     {
-        
+        if (Input.GetKeyDown(KeyCode.D))
+        {
+            int next_card = _cards[--_size];
+            //Draw a card.
+            Card drawn_card = Instantiate<Card>(_cardObject);
+            drawn_card.enabled = true;
+            drawn_card.SetValue(next_card);
+            drawn_card.transform.position = new Vector3(transform.position.x + 1, transform.position.y, transform.position.z);
+        }
+    }
+
+    private void UpdateVisual()
+    {
+
     }
 }

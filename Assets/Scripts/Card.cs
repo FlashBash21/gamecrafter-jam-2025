@@ -21,18 +21,17 @@ public class Card : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler, IP
     private Vector3 _offset;
     private Dictionary<int, String> _textConversionDict;
 
-    public int Value { get; private set; } = 1;
-    
+    public int Value { get; private set; } = 0;
 
     private void Start()
-{
-    _textConversionDict = new Dictionary<int, string>();
-    _textConversionDict.Add(0, "");
-    _textConversionDict.Add(1, "A");
-    _textConversionDict.Add(11, "J");
-    _textConversionDict.Add(12, "Q");
-    _textConversionDict.Add(13, "K");
-}
+    {
+        _textConversionDict = new Dictionary<int, string>();
+        _textConversionDict.Add(0, "");
+        _textConversionDict.Add(1, "A");
+        _textConversionDict.Add(11, "J");
+        _textConversionDict.Add(12, "Q");
+        _textConversionDict.Add(13, "K");
+    }
 
     private void Update()
     {
